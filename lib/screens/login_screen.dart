@@ -1,3 +1,4 @@
+import 'package:e_learning_apps/screens/forgot_password.dart';
 import 'package:e_learning_apps/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     double borderRadius = 17.54; // Nilai radius yang seragam
-
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(16),
@@ -116,7 +116,12 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 TextButton(
                   onPressed: () {
-                    // Add logic for forgot password
+                    // Add navigation to forgot password screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ForgotPasswordScreen()),
+                    );
                   },
                   child: Text(
                     'Forgot Password?',
