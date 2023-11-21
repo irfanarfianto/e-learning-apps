@@ -1,3 +1,4 @@
+import 'package:e_learning_apps/main.dart';
 import 'package:e_learning_apps/screens/forgot_password.dart';
 import 'package:e_learning_apps/screens/register_screen.dart';
 import 'package:flutter/material.dart';
@@ -141,7 +142,11 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(height: 12),
             ElevatedButton(
               onPressed: () {
-                // Add login logic here
+                // buatkan agar pindah ke halaman myApp
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyApp()),
+                );
               },
               style: ElevatedButton.styleFrom(
                 //color button
