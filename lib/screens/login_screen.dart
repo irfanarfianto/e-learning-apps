@@ -1,4 +1,4 @@
-import 'package:e_learning_apps/main.dart';
+import 'package:e_learning_apps/screens/home_screen.dart';
 import 'package:e_learning_apps/screens/forgot_password.dart';
 import 'package:e_learning_apps/screens/register_screen.dart';
 import 'package:flutter/material.dart';
@@ -145,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 // buatkan agar pindah ke halaman myApp
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MyApp()),
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
                 );
               },
               style: ElevatedButton.styleFrom(
