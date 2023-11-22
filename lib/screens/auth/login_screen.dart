@@ -1,6 +1,6 @@
 import 'package:e_learning_apps/screens/home_screen.dart';
-import 'package:e_learning_apps/screens/forgot_password.dart';
-import 'package:e_learning_apps/screens/register_screen.dart';
+import 'package:e_learning_apps/screens/auth/forgot_password.dart';
+import 'package:e_learning_apps/screens/auth/register_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -117,11 +117,29 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 TextButton(
                   onPressed: () {
-                    // Add navigation to forgot password screen
+                    // Add navigation to forgot password screen with slide animation
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => ForgotPasswordScreen()),
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) {
+                          return ForgotPasswordScreen();
+                        },
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          var begin = Offset(1.0, 0.0);
+                          var end = Offset.zero;
+                          var curve = Curves.ease;
+
+                          var tween = Tween(begin: begin, end: end)
+                              .chain(CurveTween(curve: curve));
+
+                          return SlideTransition(
+                            position: animation.drive(tween),
+                            child: child,
+                          );
+                        },
+                        transitionDuration: Duration(milliseconds: 500),
+                      ),
                     );
                   },
                   child: Text(
