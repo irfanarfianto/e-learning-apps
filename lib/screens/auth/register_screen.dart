@@ -8,6 +8,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   bool _obscurePassword = true;
   bool _isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     double borderRadius = 17.54; // Nilai radius yang seragam
@@ -45,16 +46,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
             SizedBox(height: 24),
+            // Textfield untuk Username
             TextField(
-              style: TextStyle(
-                color: Colors.white,
-              ),
+              style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 labelText: 'Username',
                 hintText: 'Enter your username',
-                labelStyle: TextStyle(
-                  color: Colors.white,
-                ),
+                labelStyle: TextStyle(color: Colors.white),
                 hintStyle: TextStyle(
                   color: Color(0xFFE4F1F8),
                   fontSize: 17.28,
@@ -62,10 +60,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   fontWeight: FontWeight.w500,
                   height: 0,
                 ),
-                // prefixIcon: Icon(
-                //   Icons.email,
-                //   color: Colors.white,
-                // ),
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 14, horizontal: 16),
                 border: OutlineInputBorder(
@@ -75,27 +69,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
             SizedBox(height: 16),
+            // Textfield untuk Email
             TextField(
-              style: TextStyle(
-                color: Colors.white,
-              ),
+              style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 labelText: 'Email',
                 hintText: 'Enter your email',
-                labelStyle: TextStyle(
-                  color: Colors.white,
-                ),
-                hintStyle: TextStyle(
-                  color: Color(0xFFE4F1F8),
-                  fontSize: 17.28,
-                  fontFamily: 'DM Sans',
-                  fontWeight: FontWeight.w500,
-                  height: 0,
-                ),
-                // prefixIcon: Icon(
-                //   Icons.email,
-                //   color: Colors.white,
-                // ),
+                labelStyle: TextStyle(color: Colors.white),
+                hintStyle: TextStyle(color: Color(0xFFE4F1F8)),
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 14, horizontal: 16),
                 border: OutlineInputBorder(
@@ -105,19 +86,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
             SizedBox(height: 16),
+            // Textfield untuk Password
             TextField(
-              style: TextStyle(
-                color: Colors.white,
-              ),
+              style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 labelText: 'Password',
                 hintText: 'Enter your password',
-                labelStyle: TextStyle(
-                  color: Colors.white,
-                ),
-                hintStyle: TextStyle(
-                  color: Colors.white70,
-                ),
+                labelStyle: TextStyle(color: Colors.white),
+                hintStyle: TextStyle(color: Colors.white70),
                 suffixIcon: IconButton(
                   icon: Icon(
                     _obscurePassword
@@ -140,7 +116,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               obscureText: _obscurePassword,
             ),
             SizedBox(height: 24),
-            // check box untuk menyetujui syarat dan ketentuan aplikasi
+            // Checkbox untuk menyetujui syarat dan ketentuan aplikasi
             Row(
               children: [
                 Checkbox(
@@ -157,10 +133,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: Text.rich(
                     TextSpan(
                       text: 'I agree to the ',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                      ),
+                      style: TextStyle(color: Colors.white, fontSize: 12),
                       children: [
                         TextSpan(
                           text: 'Terms & Conditions',
@@ -175,8 +148,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ],
             ),
-
             SizedBox(height: 24),
+            // Tombol untuk Registrasi
             ElevatedButton(
               onPressed: () {
                 // Add registration logic here
@@ -197,11 +170,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Text(
               'Or login with',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-              ),
+              style: TextStyle(color: Colors.white),
             ),
             SizedBox(height: 12),
+            // Tombol untuk Login dengan Google
             ElevatedButton.icon(
               onPressed: () {
                 // Add Google login logic here
@@ -216,20 +188,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
               icon: Image.asset('assets/G.png', height: 24, width: 24),
               label: Text(
                 'Sign in with Google',
-                style: TextStyle(
-                  color: Color(0xFF0C042E),
-                ),
+                style: TextStyle(color: Color(0xFF0C042E)),
               ),
             ),
             SizedBox(height: 24),
+            // TextButton untuk kembali ke halaman Login
             TextButton(
               onPressed: () {
                 // Add navigation to login screen
                 Navigator.pop(context);
               },
-              style: TextButton.styleFrom(
-                primary: Colors.white,
-              ),
+              style: TextButton.styleFrom(primary: Colors.white),
               child: Text('Already have an account? Login here'),
             ),
           ],

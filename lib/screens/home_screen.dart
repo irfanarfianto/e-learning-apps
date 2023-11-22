@@ -60,6 +60,30 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
+        selectedItemColor: Colors.blue,
+        currentIndex:
+            0, // Ganti sesuai dengan indeks halaman yang ingin ditampilkan
+        onTap: (int index) {
+          // Handle navigasi ketika item bottom navigation bar ditekan
+          // Misalnya, menggunakan Navigator untuk pindah halaman
+          // Navigator.of(context).pushNamed('/halaman_ke-${index + 1}');
+        },
+      ),
     );
   }
 }
