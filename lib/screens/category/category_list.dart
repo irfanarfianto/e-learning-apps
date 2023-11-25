@@ -14,13 +14,13 @@ class CategoryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60, // Set the desired height for the row
+      height: 40, // Set the desired height for the row
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: List.generate(
           categories.length,
           (index) => Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            padding: EdgeInsets.symmetric(horizontal: 5.0),
             child: GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -32,10 +32,10 @@ class CategoryList extends StatelessWidget {
                 );
               },
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 20),
                 decoration: BoxDecoration(
-                  color: Colors.blue, // Adjust the color as needed
-                  borderRadius: BorderRadius.circular(8),
+                  color: Color.fromRGBO(255, 255, 255, 0.2),
+                  borderRadius: BorderRadius.circular(50),
                 ),
                 child: Center(
                   child: Text(

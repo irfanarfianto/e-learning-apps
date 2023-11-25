@@ -48,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(width: 173),
+                      SizedBox(width: 180),
                       Align(
                         alignment: Alignment.centerRight,
                         child: CircleAvatar(
@@ -148,9 +148,6 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                // carousel section
-                SizedBox(height: 20),
-                CarouselWidget(),
                 SizedBox(height: 20),
                 // category menu
                 Text(
@@ -166,6 +163,8 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: 20),
                 CategoryList(),
                 SizedBox(height: 20),
+                CarouselWidget(),
+                SizedBox(height: 20),
                 // Popular Course Section
                 Text(
                   'Popular Course',
@@ -178,8 +177,9 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20),
-                // List of Popular Course
-                PopularCourses(),
+                Container(
+                  child: PopularCoursesSlider(),
+                ),
               ],
             ),
           ),
