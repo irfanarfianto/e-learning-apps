@@ -1,26 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import '../course/course_details.dart';
 
 class SimpleCourseCard extends StatelessWidget {
-  final String title;
-  final double rating;
-  final String price;
-  final String user;
-  final String imagePath;
+  final Map<String, String> courseData;
 
-  SimpleCourseCard({
-    required this.title,
-    required this.rating,
-    required this.price,
-    required this.user,
-    required this.imagePath,
-  });
+  const SimpleCourseCard({required this.courseData});
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    final String title = courseData['title']!;
+    final String user = courseData['user']!;
+    final String price = courseData['price']!;
+    final String rating = courseData['rating']!;
+    final String imagePath = courseData['imagePath']!;
+    return GestureDetector(
       onTap: () {
-        print('Card pressed: $title');
+        // Navigate to the detail page here
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => CourseDetails(
+                    title: title,
+                    rating: double.parse(rating as String),
+                    price: price,
+                    user: user,
+                    imagePath: imagePath,
+                  )),
+        );
       },
       child: Card(
         elevation: 4,
@@ -217,13 +224,7 @@ class PopularCoursesSlider extends StatelessWidget {
         final course = courses[index];
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: 2.0),
-          child: SimpleCourseCard(
-            title: course['title']!,
-            rating: double.parse(course['rating']!),
-            price: course['price']!,
-            user: course['user']!,
-            imagePath: course['imagePath']!,
-          ),
+          child: SimpleCourseCard(courseData: course),
         );
       },
     );

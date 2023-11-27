@@ -1,5 +1,5 @@
-// course_details.dart
 import 'package:flutter/material.dart';
+import '../../color/app_colors.dart';
 
 class CourseDetails extends StatelessWidget {
   final String title;
@@ -20,18 +20,31 @@ class CourseDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Course Details'),
+        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: AppColors.primaryColor,
+        title: Text(
+          'Course Details',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white, // Adjust text color as needed
+          ),
+        ),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
-              imagePath,
-              height: 200,
-              width: double.infinity,
-              fit: BoxFit.cover,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12.0),
+              child: Image.asset(
+                imagePath,
+                height: 200,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
             SizedBox(height: 16),
             Text(
@@ -39,6 +52,7 @@ class CourseDetails extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
             SizedBox(height: 8),
@@ -47,13 +61,14 @@ class CourseDetails extends StatelessWidget {
               children: [
                 Text(
                   user,
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(fontSize: 16, color: Colors.white70),
                 ),
                 Text(
                   price,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
+                    color: Colors.white, // Adjust text color as needed
                   ),
                 ),
               ],
@@ -69,13 +84,17 @@ class CourseDetails extends StatelessWidget {
                 SizedBox(width: 8),
                 Text(
                   '$rating',
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white), // Adjust text color as needed
                 ),
               ],
             ),
+            SizedBox(height: 16),
           ],
         ),
       ),
+      backgroundColor: AppColors.primaryColor,
     );
   }
 }
