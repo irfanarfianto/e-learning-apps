@@ -78,6 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: 20),
             buildUserInfo(), // Panggil fungsi buildUserInfo di sini
             SizedBox(height: 20),
             Card(

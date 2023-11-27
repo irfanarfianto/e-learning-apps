@@ -1,5 +1,5 @@
+import 'package:e_learning_apps/color/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import '../course/course_details.dart';
 
 class SimpleCourseCard extends StatelessWidget {
@@ -213,20 +213,20 @@ class PopularCoursesSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CarouselSlider.builder(
-      options: CarouselOptions(
-        height: 240.0,
-        enableInfiniteScroll: false,
-        viewportFraction: 0.7,
+    return Container(
+      height: 240.0,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: courses.length,
+        itemBuilder: (context, index) {
+          final course = courses[index];
+          return Container(
+            margin: const EdgeInsets.symmetric(horizontal: 8),
+            width: MediaQuery.of(context).size.width * 0.6,
+            child: SimpleCourseCard(courseData: course),
+          );
+        },
       ),
-      itemCount: courses.length,
-      itemBuilder: (BuildContext context, int index, int realIndex) {
-        final course = courses[index];
-        return Container(
-          margin: const EdgeInsets.symmetric(horizontal: 2.0),
-          child: SimpleCourseCard(courseData: course),
-        );
-      },
     );
   }
 }
@@ -237,7 +237,7 @@ void main() {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Popular Courses'),
-          backgroundColor: const Color(0xFF0C042E),
+          backgroundColor: AppColors.primaryColor,
         ),
         body: PopularCoursesSlider(),
       ),
