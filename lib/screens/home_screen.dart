@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'category/category_list.dart';
+// import 'category/category_list.dart';
 import 'carousel/carousel_widget.dart';
 import 'course/popular_courses.dart';
 
