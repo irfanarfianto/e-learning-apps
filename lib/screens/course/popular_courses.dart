@@ -24,7 +24,7 @@ class SimpleCourseCard extends StatelessWidget {
       },
       child: Card(
         elevation: 4,
-        color: Color(0xFF0C042E),
+        color: const Color(0xFF0C042E),
         shadowColor: Colors.black,
         child: Stack(
           children: [
@@ -50,7 +50,9 @@ class SimpleCourseCard extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: TextStyle(
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,
                           fontFamily: 'DM Sans',
@@ -58,13 +60,13 @@ class SimpleCourseCard extends StatelessWidget {
                           letterSpacing: -0.14,
                         ),
                       ),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             '$user',
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 14,
                               fontFamily: 'DM Sans',
@@ -74,7 +76,7 @@ class SimpleCourseCard extends StatelessWidget {
                           ),
                           Text(
                             '$price',
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 20,
                               fontFamily: 'DM Sans',
@@ -93,22 +95,22 @@ class SimpleCourseCard extends StatelessWidget {
               top: 8,
               right: 8,
               child: Container(
-                padding: EdgeInsets.all(4),
+                padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                  color: Color(0xFF543EE9), // Adjust color as needed
+                  color: const Color(0xFF543EE9), // Adjust color as needed
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.star,
                       color: Colors.white,
                       size: 16,
                     ),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     Text(
                       '$rating',
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 12,
                         fontFamily: 'DM Sans',
@@ -150,6 +152,55 @@ class PopularCoursesSlider extends StatelessWidget {
       'user': 'Jane Smith',
       'imagePath': 'assets/pop3.jpg',
     },
+    {
+      'title': 'Data Science Fundamentals',
+      'rating': '4.6',
+      'price': 'Rp: 24.999',
+      'user': 'Alex Johnson',
+      'imagePath': 'assets/pop4.jpg',
+    },
+    {
+      'title': 'Web Development: HTML, CSS, JavaScript',
+      'rating': '4.7',
+      'price': 'Rp: 22.999',
+      'user': 'Emily White',
+      'imagePath': 'assets/pop5.jpg',
+    },
+    {
+      'title': 'Android App Design Principles',
+      'rating': '4.4',
+      'price': 'Rp: 17.999',
+      'user': 'Michael Brown',
+      'imagePath': 'assets/pop6.jpg',
+    },
+    {
+      'title': 'Machine Learning Basics',
+      'rating': '4.9',
+      'price': 'Rp: 34.999',
+      'user': 'Sophia Davis',
+      'imagePath': 'assets/pop7.jpg',
+    },
+    {
+      'title': 'JavaScript Frameworks: React, Angular, Vue',
+      'rating': '4.3',
+      'price': 'Rp: 21.999',
+      'user': 'William Wilson',
+      'imagePath': 'assets/pop8.jpg',
+    },
+    {
+      'title': 'Cybersecurity Fundamentals',
+      'rating': '4.7',
+      'price': 'Rp: 26.999',
+      'user': 'Ella Turner',
+      'imagePath': 'assets/pop9.jpg',
+    },
+    {
+      'title': 'iOS App Development with Swift',
+      'rating': '4.5',
+      'price': 'Rp: 31.999',
+      'user': 'Liam Thomas',
+      'imagePath': 'assets/pop10.jpg',
+    },
     // Add more courses as needed
   ];
 
@@ -157,7 +208,7 @@ class PopularCoursesSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarouselSlider.builder(
       options: CarouselOptions(
-        height: 265.0,
+        height: 240.0,
         enableInfiniteScroll: false,
         viewportFraction: 0.7,
       ),
@@ -165,8 +216,7 @@ class PopularCoursesSlider extends StatelessWidget {
       itemBuilder: (BuildContext context, int index, int realIndex) {
         final course = courses[index];
         return Container(
-          margin: EdgeInsets.symmetric(
-              horizontal: 2.0), // Adjust the spacing as needed
+          margin: const EdgeInsets.symmetric(horizontal: 2.0),
           child: SimpleCourseCard(
             title: course['title']!,
             rating: double.parse(course['rating']!),
@@ -185,8 +235,8 @@ void main() {
     MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Popular Courses'),
-          backgroundColor: Color(0xFF0C042E),
+          title: const Text('Popular Courses'),
+          backgroundColor: const Color(0xFF0C042E),
         ),
         body: PopularCoursesSlider(),
       ),

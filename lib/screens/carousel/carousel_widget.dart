@@ -14,7 +14,7 @@ class CarouselWidget extends StatelessWidget {
       ),
       items: [
         'assets/carou1.jpg',
-        'assets/carou2.jpg',
+        // 'assets/carou2.jpg',
         'assets/carou3.jpg',
       ].map((String imagePath) {
         return Builder(
