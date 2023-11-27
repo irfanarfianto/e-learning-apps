@@ -9,7 +9,7 @@ class CarouselWidget extends StatelessWidget {
         height: 150.0,
         enableInfiniteScroll: true,
         autoPlay: true,
-        autoPlayInterval: Duration(seconds: 3),
+        autoPlayInterval: Duration(seconds: 5),
         viewportFraction: 1.0,
       ),
       items: [
@@ -20,7 +20,7 @@ class CarouselWidget extends StatelessWidget {
         return Builder(
           builder: (BuildContext context) {
             return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5.0),
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
