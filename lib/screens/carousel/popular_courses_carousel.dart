@@ -31,7 +31,7 @@ class SimpleCourseCard extends StatelessWidget {
       },
       child: Card(
         elevation: 4,
-        color: const Color(0xFF0C042E),
+        color: AppColors.primaryColor,
         shadowColor: Colors.black,
         child: Stack(
           children: [
@@ -104,7 +104,7 @@ class SimpleCourseCard extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF543EE9), // Adjust color as needed
+                  color: AppColors.accentColor,
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: Row(

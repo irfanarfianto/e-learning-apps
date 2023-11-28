@@ -1,10 +1,15 @@
 import 'package:e_learning_apps/screens/category/category_list.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../color/app_colors.dart';
 import 'course_details.dart';
+import 'package:shimmer/shimmer.dart';
 
-class PopularCoursePage extends StatelessWidget {
+class PopularCoursePage extends StatefulWidget {
+  @override
+  _PopularCoursePageState createState() => _PopularCoursePageState();
+}
+
+class _PopularCoursePageState extends State<PopularCoursePage> {
   final List<Map<String, String>> courses = [
     {
       'title': 'UI Design: Wireframe to Visual Design',
@@ -76,8 +81,19 @@ class PopularCoursePage extends StatelessWidget {
       'user': 'Liam Thomas',
       'imagePath': 'assets/pop10.jpg',
     },
-    // Ad
   ];
+
+  bool shimmer = false;
+
+  Future<void> _refresh() async {
+    setState(() {
+      shimmer = true;
+    });
+    await Future.delayed(const Duration(seconds: 2));
+    setState(() {
+      shimmer = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +112,7 @@ class PopularCoursePage extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(FontAwesomeIcons.filter),
+            icon: const Icon(Icons.filter_alt_outlined, size: 25),
             color: Color.fromRGBO(255, 255, 255, 1),
             onPressed: () {
               // Add your filter logic here
@@ -109,11 +125,21 @@ class PopularCoursePage extends StatelessWidget {
           CategoryList(),
           const SizedBox(height: 6),
           Expanded(
-            child: ListView.builder(
-              itemCount: courses.length,
-              itemBuilder: (context, index) {
-                return CourseCard(courseData: courses[index]);
-              },
+            child: RefreshIndicator(
+              onRefresh: _refresh,
+              child: ListView.builder(
+                itemCount: courses.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return shimmer
+                      ? Shimmer.fromColors(
+                          baseColor: const Color.fromARGB(255, 180, 180, 180)!,
+                          highlightColor: Colors.grey[100]!,
+                          child: CourseCardShimmer(),
+                        )
+                      : CourseCard(courseData: courses[index]);
+                },
+              ),
             ),
           ),
         ],
@@ -138,17 +164,17 @@ class CourseCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        // Navigate to the detail page here
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => CourseDetails(
-                    title: title,
-                    rating: double.parse(rating),
-                    price: price,
-                    user: user,
-                    imagePath: imagePath,
-                  )),
+            builder: (context) => CourseDetails(
+              title: title,
+              rating: double.parse(rating),
+              price: price,
+              user: user,
+              imagePath: imagePath,
+            ),
+          ),
         );
       },
       child: Card(
@@ -161,8 +187,8 @@ class CourseCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                width: 100, // Adjust the width as needed
-                height: 100, // Adjust the height as needed
+                width: 100,
+                height: 100,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   image: DecorationImage(
@@ -221,7 +247,7 @@ class CourseCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                  color: AppColors.accentColor, // Adjust color as needed
+                  color: AppColors.accentColor,
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: Row(
@@ -247,6 +273,23 @@ class CourseCard extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class CourseCardShimmer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        height: 100.0,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10.0),
         ),
       ),
     );
