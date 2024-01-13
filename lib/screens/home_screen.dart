@@ -21,6 +21,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   String userName = 'Irfan';
+  Future<void> _handleRefresh() async {
+    // Tambahkan logika pembaruan di sini
+    await Future.delayed(
+        Duration(seconds: 2)); // Contoh penundaan selama 2 detik
+
+    setState(() {
+      // Tambahkan pembaruan status di sini
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,62 +84,30 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildHomeScreen() {
     return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 20),
-            buildUserInfo(), // Panggil fungsi buildUserInfo di sini
-            SizedBox(height: 20),
-            Card(
-              color: AppColors.primaryColor,
-              shadowColor: Colors.black,
-              elevation: 2,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(children: [
-                            Text(
-                              'Learned Today',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                                fontFamily: 'DM Sans',
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: -0.14,
-                              ),
-                            ),
-                            Spacer(),
-                            Text(
-                              'My Courses',
-                              style: TextStyle(
-                                color: AppColors.accentColor,
-                                fontSize: 14,
-                                fontFamily: 'DM Sans',
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ]),
-                          SizedBox(height: 4),
-                          Row(
-                            children: [
+      child: RefreshIndicator(
+        onRefresh: _handleRefresh,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: 20),
+              buildUserInfo(), // Panggil fungsi buildUserInfo di sini
+              SizedBox(height: 20),
+              Card(
+                color: AppColors.primaryColor,
+                shadowColor: Colors.black,
+                elevation: 2,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(children: [
                               Text(
-                                '42min ',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 25,
-                                  fontFamily: 'DM Sans',
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: -0.90,
-                                ),
-                              ),
-                              Text(
-                                '/ 60min',
+                                'Learned Today',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 14,
@@ -139,78 +116,113 @@ class _HomeScreenState extends State<HomeScreen> {
                                   letterSpacing: -0.14,
                                 ),
                               ),
-                            ],
-                          ),
-                          SizedBox(height: 8),
-                          Container(
-                            width: double.infinity,
-                            child: LinearProgressIndicator(
-                              value: 0.9,
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                AppColors.accentColor,
+                              Spacer(),
+                              Text(
+                                'My Courses',
+                                style: TextStyle(
+                                  color: AppColors.accentColor,
+                                  fontSize: 14,
+                                  fontFamily: 'DM Sans',
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
-                              backgroundColor: Colors.white.withOpacity(0.3),
-                              minHeight: 5,
-                              borderRadius: BorderRadius.circular(5),
+                            ]),
+                            SizedBox(height: 4),
+                            Row(
+                              children: [
+                                Text(
+                                  '42min ',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 25,
+                                    fontFamily: 'DM Sans',
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: -0.90,
+                                  ),
+                                ),
+                                Text(
+                                  '/ 60min',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontFamily: 'DM Sans',
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: -0.14,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
+                            SizedBox(height: 8),
+                            Container(
+                              width: double.infinity,
+                              child: LinearProgressIndicator(
+                                value: 0.9,
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  AppColors.accentColor,
+                                ),
+                                backgroundColor: Colors.white.withOpacity(0.3),
+                                minHeight: 5,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
-            CarouselWidget(),
-            SizedBox(height: 20),
-            GestureDetector(
-              onTap: () {
-                // Navigate to the popular course page
-                Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        PopularCoursePage(),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      const begin = Offset(1.0, 0.0);
-                      const end = Offset.zero;
-                      var tween = Tween(begin: begin, end: end);
-                      var offsetAnimation = animation.drive(tween);
-                      return SlideTransition(
-                        position: offsetAnimation,
-                        child: child,
-                      );
-                    },
+                    ],
                   ),
-                );
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Popular Course',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontFamily: 'DM Sans',
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: -0.60,
-                      ),
-                    ),
-                    Icon(FontAwesomeIcons.chevronRight, color: Colors.white),
-                  ],
                 ),
               ),
-            ),
-            SizedBox(height: 20),
-            Container(
-              child: PopularCoursesSlider(),
-            ),
-          ],
+              SizedBox(height: 20),
+              CarouselWidget(),
+              SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  // Navigate to the popular course page
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          PopularCoursePage(),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        const begin = Offset(1.0, 0.0);
+                        const end = Offset.zero;
+                        var tween = Tween(begin: begin, end: end);
+                        var offsetAnimation = animation.drive(tween);
+                        return SlideTransition(
+                          position: offsetAnimation,
+                          child: child,
+                        );
+                      },
+                    ),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Popular Course',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontFamily: 'DM Sans',
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.60,
+                        ),
+                      ),
+                      Icon(FontAwesomeIcons.chevronRight, color: Colors.white),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              Container(
+                child: PopularCoursesSlider(),
+              ),
+            ],
+          ),
         ),
       ),
     );

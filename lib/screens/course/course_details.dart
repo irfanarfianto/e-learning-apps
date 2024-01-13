@@ -27,7 +27,7 @@ class CourseDetails extends StatelessWidget {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Colors.white, // Adjust text color as needed
+            color: Colors.white, // Sesuaikan warna teks sesuai kebutuhan
           ),
         ),
         centerTitle: true,
@@ -68,7 +68,8 @@ class CourseDetails extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white, // Adjust text color as needed
+                    color:
+                        Colors.white, // Sesuaikan warna teks sesuai kebutuhan
                   ),
                 ),
               ],
@@ -85,12 +86,35 @@ class CourseDetails extends StatelessWidget {
                 Text(
                   '$rating',
                   style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white), // Adjust text color as needed
+                    fontSize: 18,
+                    color:
+                        Colors.white, // Sesuaikan warna teks sesuai kebutuhan
+                  ),
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            Spacer(),
+            ElevatedButton(
+              onPressed: () {
+                // buatkan agar pindah ke halaman myApp
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => HomeScreen()),
+                // );
+              },
+              style: ElevatedButton.styleFrom(
+                //color button
+                primary: Color(0xFF543EE9),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                minimumSize: Size(double.infinity, 50), // Tinggi tombol
+              ),
+              child: Text(
+                'Daftar Sekarang',
+                style: TextStyle(color: Color(0xFFE4F1F8), fontSize: 18),
+              ),
+            ),
           ],
         ),
       ),
